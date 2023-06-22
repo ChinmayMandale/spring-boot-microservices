@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.learn.architecture.productservice.ProductServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.218 s - in com.learn.architecture.productservice.ProductServiceApplicationTests

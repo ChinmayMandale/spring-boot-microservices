@@ -1,0 +1,10 @@
+com/learn/architecture/productservice/model/Product$ProductBuilder.class
+com/learn/architecture/productservice/model/Product.class
+com/learn/architecture/productservice/dto/ProductRequest$ProductRequestBuilder.class
+com/learn/architecture/productservice/dto/ProductRequest.class
+com/learn/architecture/productservice/service/ProductService.class
+com/learn/architecture/productservice/dto/ProductResponse.class
+com/learn/architecture/productservice/controller/ProductController.class
+com/learn/architecture/productservice/ProductServiceApplication.class
+com/learn/architecture/productservice/dto/ProductResponse$ProductResponseBuilder.class
+com/learn/architecture/productservice/repository/ProductRepository.class

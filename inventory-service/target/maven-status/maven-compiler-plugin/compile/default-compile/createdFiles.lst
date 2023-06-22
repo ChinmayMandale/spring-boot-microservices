@@ -1,0 +1,5 @@
+com/learn/architecture/repository/InventoryRepository.class
+com/learn/architecture/controller/InventoryController.class
+com/learn/architecture/service/InventoryService.class
+com/learn/architecture/model/Inventory.class
+com/learn/architecture/InventoryServiceApplication.class

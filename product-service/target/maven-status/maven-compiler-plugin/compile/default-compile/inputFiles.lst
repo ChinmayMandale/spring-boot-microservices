@@ -1,0 +1,7 @@
+/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/product-service/src/main/java/com/learn/architecture/productservice/dto/ProductRequest.java
+/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/product-service/src/main/java/com/learn/architecture/productservice/dto/ProductResponse.java
+/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/product-service/src/main/java/com/learn/architecture/productservice/ProductServiceApplication.java
+/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/product-service/src/main/java/com/learn/architecture/productservice/service/ProductService.java
+/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/product-service/src/main/java/com/learn/architecture/productservice/controller/ProductController.java
+/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/product-service/src/main/java/com/learn/architecture/productservice/model/Product.java
+/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/product-service/src/main/java/com/learn/architecture/productservice/repository/ProductRepository.java
