@@ -1,8 +1,0 @@
-/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/order-service/src/main/java/com/learn/architecture/model/OrderLineItems.java
-/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/order-service/src/main/java/com/learn/architecture/service/OrderService.java
-/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/order-service/src/main/java/com/learn/architecture/OrderServiceApplication.java
-/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/order-service/src/main/java/com/learn/architecture/repository/OrderRepository.java
-/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/order-service/src/main/java/com/learn/architecture/model/Order.java
-/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/order-service/src/main/java/com/learn/architecture/dto/OrderLineItemsDTO.java
-/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/order-service/src/main/java/com/learn/architecture/controller/OrderController.java
-/Users/chinmaymandale/Projects/GitHub/spring-boot-microservices/order-service/src/main/java/com/learn/architecture/dto/OrderRequestDTO.java
