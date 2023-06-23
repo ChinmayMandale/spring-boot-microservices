@@ -8,4 +8,5 @@ This project is a hands-on architectural overview of spring-boot-microservices
  
 * Phase 2:
   * Inter service communication between Order Service & Inventory Service
-  * Used WebClient for inter service communication
+  * Used WebClient for synchronous inter service communication (biz logic demands it to be sync call to check if product is in stock)
+  * By default WebClient will make async calls
