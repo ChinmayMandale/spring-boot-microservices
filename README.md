@@ -30,3 +30,11 @@ This project is a hands-on architectural overview of spring-boot-microservices
     * predicates (path matcher),
     * filters(apply filter after path is matched to set path)
   * Even discovery server has a route defined
+ 
+* Phase 5:
+  * Added Keycloak OAuth2 security authentication
+  * Configured docker instance of keycloak
+  * included issuer url in app.prop file of api-gateway
+  * configured bean of securitywebfilterchain on api-gateway to enable authentication (as api-gateway is based on spring-webflux project & not spring mvc)
+  * configured bean of security filterchain on discovery-server to enable authentication (this one is based on spring-mvc)
+ 
