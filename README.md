@@ -18,3 +18,15 @@ This project is a hands-on architectural overview of spring-boot-microservices
   * Sends response as service registry - which is cached locally at each microservice
   * If order - inventory comm. established -> discovery server down -> still comm. is facilitated due to cache
   * Newly run services after discovery server is down wont be able to register. Hence wont comm. with others
+
+* Phase 4:
+  * API Gateway added to the project
+  * All requests will have same port (8080) and will be differentiated based on path (/api/product or /api/order)
+  * Only one server port is needed : api-gateway server port (8080) by default
+  * Each microservice has a route defined in api-gateway
+  * We can add:
+    * id,
+    * url (url can be load balanced or single servers can be http accessed),
+    * predicates (path matcher),
+    * filters(apply filter after path is matched to set path)
+  * Even discovery server has a route defined
