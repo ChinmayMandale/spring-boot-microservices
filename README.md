@@ -78,6 +78,7 @@ This project is a hands-on architectural overview of spring-boot-microservices
   * Conceptual learning:
     > What?
     >> Distributed Tracing is a design pattern which allows observability to each API call. Adds granularity & helps maintainability.
+    >
     > How?
     >> Install Zipkin
     >> Each API call that user makes goes through multiple microservices (assume), then the call gets assigned a span id (unique) in each microservice.
