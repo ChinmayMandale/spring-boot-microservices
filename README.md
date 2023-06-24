@@ -61,4 +61,32 @@ This project is a hands-on architectural overview of spring-boot-microservices
   
   * Changes in order-service application.properties file
   * Order Controller & particularly the api call where we communicate with other microservice
+
+* Phase 7:
+  * Added Distributed Tracing. Installed zipkin using docker. Running locally on port 9411 (default)
+  * This helps in tracing each API call from start to end. Helps lookup any errors. Debugging is easy
+  * Changes to app.prop files of each microservice to enable tracing
+  * We can customize probability of api calls to be traced. (1.0 means 100% of calls sent through tracing)
+  * If we want to customize a span id/name of any call:
+    * Add extra observatory capabilities inside business logic (service layer)
+    * Added it in order service just before it makes call to inventory service
+    * Added observationregistry
+    * Created a lookup object of Observation
+    * set cardinality value
+    * The logic to call inventory service is put inside this object.observe method
+    * similar to Angular Observables
+  * Conceptual learning:
+    > What?
+    >> Distributed Tracing is a design pattern which allows observability to each API call. Adds granularity & helps maintainability.
+    > How?
+    >> Install Zipkin
+    >> Each API call that user makes goes through multiple microservices (assume), then the call gets assigned a span id (unique) in each microservice.
+    >> We can customize span IDs as well
+    >> If API call fails / is taking long time -> lookup in zipkin
+    >
+    > Additional features:
+    >>  Can configure probability of API calls traced through Zipkin
  
+
+
+
