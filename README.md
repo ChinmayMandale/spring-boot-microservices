@@ -56,5 +56,9 @@ This project is a hands-on architectural overview of spring-boot-microservices
     >
     > Additional features:
     >> Can configure timeout & retries
-    >> If receiver 
+    >> If receiver does not respond in time, connection is timed out - exception thrown
+    >> If connection does not respond in configured retry time, retry sending request again
+  
+  * Changes in order-service application.properties file
+  * Order Controller & particularly the api call where we communicate with other microservice
  
