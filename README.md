@@ -38,3 +38,23 @@ This project is a hands-on architectural overview of spring-boot-microservices
   * configured bean of securitywebfilterchain on api-gateway to enable authentication (as api-gateway is based on spring-webflux project & not spring mvc)
   * configured bean of security filterchain on discovery-server to enable authentication (this one is based on spring-mvc)
  
+* Phase 6:
+  * Added Resilience 4J (based on Netflix Hystrix library) for circuit breaking
+  * Conceptual learning
+    > Circuit breaking :
+    > Why?
+    >> API calls can be made from one service to other. There are chances that the sender sends calls but receiver is down
+    >> In such cases, sender might keep sending call & receiver wont receive any & its waste of resources
+    >
+    > Then?
+    >>  Stop sending calls after 5 simultaneously failed calls
+    >
+    > How to implement:
+    >> Add props in app.prop file
+    >> Add annotations to the call inside controller of sender, where we comm between 2 microservices
+    >> Add fallback methods
+    >
+    > Additional features:
+    >> Can configure timeout & retries
+    >> If receiver 
+ 
