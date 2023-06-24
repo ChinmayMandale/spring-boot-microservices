@@ -6,6 +6,8 @@ import com.learn.architecture.orderservice.dto.OrderLineItemsDTO;
 import com.learn.architecture.orderservice.dto.OrderRequestDTO;
 import com.learn.architecture.orderservice.model.Order;
 import com.learn.architecture.orderservice.model.OrderLineItems;
+import io.micrometer.observation.Observation;
+import io.micrometer.observation.ObservationRegistry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,7 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-
+    private final ObservationRegistry observationRegistry;
     private final WebClient.Builder webClientBuilder;
 
     public String placeOrder(OrderRequestDTO orderRequestDTO) {
@@ -36,22 +38,32 @@ public class OrderService {
         List<String> skuCodes = order.getOrderLineItems().stream()
                 .map(OrderLineItems::getSkuCode)
                 .toList();
-        InventoryResponse[] inventoryResponseArray = webClientBuilder.build().get()
-                .uri("http://inventory-service/api/inventory",
-                        uriBuilder -> uriBuilder.queryParam("skuCodeList", skuCodes).build())
-                        .retrieve()
-                                .bodyToMono(InventoryResponse[].class)
-                                        .block(); // Block will make the call sychronously
-        //Otherwise by default webclient makes async calls to another service
 
-        boolean allProductsInStock = Arrays.stream(inventoryResponseArray).allMatch(InventoryResponse::isInStock);
+        log.info("Call to inventory service");
 
-        if(allProductsInStock) {
-            orderRepository.save(order);
-            return "Order placed successfully!";
-        } else {
-            throw new IllegalArgumentException("Product not in stock. Try again later.");
-        }
+        Observation inventoryServiceObservation = Observation.createNotStarted("inventory-service-lookup",
+                this.observationRegistry);
+        inventoryServiceObservation.lowCardinalityKeyValue("call", "inventory-service");
+        return inventoryServiceObservation.observe(() -> {
+            //This will be observed under distributed tracing
+            InventoryResponse[] inventoryResponseArray = webClientBuilder.build().get()
+                    .uri("http://inventory-service/api/inventory",
+                            uriBuilder -> uriBuilder.queryParam("skuCodeList", skuCodes).build())
+                    .retrieve()
+                    .bodyToMono(InventoryResponse[].class)
+                    .block(); // Block will make the call sychronously
+            //Otherwise by default webclient makes async calls to another service
+
+            boolean allProductsInStock = Arrays.stream(inventoryResponseArray).allMatch(InventoryResponse::isInStock);
+
+            if(allProductsInStock) {
+                orderRepository.save(order);
+                return "Order placed successfully!";
+            } else {
+                throw new IllegalArgumentException("Product not in stock. Try again later.");
+            }
+        });
+
 
     }
 
