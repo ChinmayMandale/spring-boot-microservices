@@ -88,6 +88,30 @@ This project is a hands-on architectural overview of spring-boot-microservices
     > Additional features:
     >>  Can configure probability of API calls traced through Zipkin
  
+* Phase 8:
+  * Added Notification Service. Made the app event-driven using Kafka.
+  * Whenever we place an order, async comm is done using kafka between order - notif services. to send notif to user
+  * Files changed:
+    * Installed kafka locally using docker-compose.yml
+    * Added notification-service maven module
+    * Added props to order service (producer of events) & notif service (consumer of events)
+      * Props in producer: kafka server, event topic name, key-serializer, value-serializer, producer-event-json-type-mapping
+      * Props in consumer: kafka server, event topic name, group id, key-deserializer, value-deserializer, consumer-event-json-type-mapping
+  * Used kafka as the message broker
+  * Conceptual learning:
+    > Async comm is necessary in apps for cases like notifications service, where we can independently carry out process of sending notifs after placing an order.
+    > Even if that event is done after few mins, it is okay. Such places call for async comm.
+    >
+    > What is Kafka?:
+    >> In this app particularly, we used Kafka as the message broker.
+    >> Order service produced an event. It serialized the event and sent it to notification service which was the event listener
+    >> Notification Service deserialized the event and processed the event by carrying out the biz logic after event arrived
+    >> In this, Kafka was like a pipeline/bridge between these 2 services
+    >
+    > Important things to remember:
+    >> Since the sending event is serialized in a custom Object defined inside order-service module,
+    >> We need to take care while deserialization that we do the event mapping correctly in notification-service 
+ 
 
 
 
