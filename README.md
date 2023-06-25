@@ -111,7 +111,13 @@ This project is a hands-on architectural overview of spring-boot-microservices
     > Important things to remember:
     >> Since the sending event is serialized in a custom Object defined inside order-service module,
     >> We need to take care while deserialization that we do the event mapping correctly in notification-service 
- 
+
+ * Phase 9:
+   * Tried to dockerize the project
+   * Added an extra app-docker.prop file in each microservice
+   * Created a docker-compose.yml file
+   * Added configs for images of every service in docker-compose file, also added dependencies & ports & properties
+   * Failed this step. Got all the services dockerized but could not send requests from POSTMAN
 
 
 
