@@ -5,7 +5,7 @@ services:
   #  MySQL - Order Service
   postgres-order:
     container_name: postgres-order
-    platform: linux/x86_64
+    platform: linux/amd64
     image: postgres
     environment:
       POSTGRES_DB: order-service
@@ -25,7 +25,7 @@ services:
   # MySQL - Inventory Service
   postgres-inventory:
     container_name: postgres-inventory
-    platform: linux/x86_64
+    platform: linux/amd64
     image: postgres
     environment:
       POSTGRES_DB: inventory-service
@@ -53,7 +53,7 @@ services:
   #KeyCloak Config with Mysql
   keycloak-mysql:
     container_name: keycloak-mysql
-    platform: linux/x86_64
+    platform: linux/amd64
     image: mysql:5.7
     volumes:
       - ./mysql_keycloak_data:/var/lib/mysql
@@ -190,3 +190,32 @@ services:
       - broker
       - discovery-server
       - api-gateway
+
+  #Prometheus & Grafana
+  prometheus:
+    image: prom/prometheus:v2.37.1
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - product-service
+      - inventory-service
+      - order-service
+      - notification-service
+
+  grafana:
+    image: grafana/grafana-oss:8.5.2
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    links:
+      - prometheus:prometheus
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=password
