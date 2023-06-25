@@ -119,5 +119,14 @@ This project is a hands-on architectural overview of spring-boot-microservices
    * Added configs for images of every service in docker-compose file, also added dependencies & ports & properties
    * Failed this step. Got all the services dockerized but could not send requests from POSTMAN
 
+ * Phase 10:
+   * Added monitoring & observability with Prometheus & Grafana
+   * Added dependencies of prometheus, spring boot actuator
+   * Configured properties file of each microservice
+   * Added prometheus.yml file to configure which services to scrape
+   * Added grafana & prometheus images in docker-compose
+   * Added grafana dashboard (diff to build a dashboard & hence imported json)
+   * Prometheus polls services "/actuator/prometheus" endpoints & Grafana polls prometheus as its datasource & displays data on dashboards
+ 
 
 
